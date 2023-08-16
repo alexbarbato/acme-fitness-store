@@ -28,7 +28,7 @@ spec:
   providesApis:
     - cart-api
   dependsOn:
-    - cart-cache
+    - resource:cart-cache
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Resource
