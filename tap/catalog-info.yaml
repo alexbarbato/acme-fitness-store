@@ -398,7 +398,6 @@ spec:
           operationId: get_all_carts
     components:
       schemas: {}
-
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
@@ -417,6 +416,35 @@ spec:
   lifecycle: production
   owner: acme-fitness-team
   system: fitness-store
+  providesApis:
+    - catalog-api
+  dependsOn:
+    - resource:catalog-database
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: catalog-database
+  description: Database for the catalog
+spec:
+  type: database
+  owner: acme-fitness-team
+  system: fitness-store
+  dependencyOf:
+  - component:acme-catalog
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: catalog-api
+  description: Provide the catalog service
+spec:
+  type: openapi
+  lifecycle: production
+  owner: acme-fitness-team
+  system: fitness-store
+  definition: |
+    openapi: 3.0.0
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
@@ -481,3 +509,6 @@ spec:
   lifecycle: production
   owner: acme-fitness-team
   system: fitness-store
+  consumesApis:
+    - catalog-api
+    - cart-api
