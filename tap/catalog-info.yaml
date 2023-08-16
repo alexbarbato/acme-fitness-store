@@ -26,7 +26,7 @@ spec:
   owner: acme-fitness-team
   system: fitness-store
   providesApis:
-    - cart-api
+    - api:cart-api
   dependsOn:
     - resource:cart-cache
 ---
@@ -417,7 +417,7 @@ spec:
   owner: acme-fitness-team
   system: fitness-store
   providesApis:
-    - catalog-api
+    - api:catalog-api
   dependsOn:
     - resource:catalog-database
 ---
@@ -445,6 +445,48 @@ spec:
   system: fitness-store
   definition: |
     openapi: 3.0.0
+    info:
+      title: Catalog
+      version: v0.1.0
+      license:
+        name: MIT
+        url: 'https://github.com/vmwarecloudadvocacy/cart/blob/master/LICENSE'
+      contact:
+        name: VMware Cloud Advocacy team
+        url: 'https://github.com/vmwarecloudadvocacy'
+      description: |
+        This is the Placeholder REST API documentation for the [Catalog](https://github.com/vmwarecloudadvocacy/cart) Service app of the [ACME Fitness Shop](https://github.com/vmwarecloudadvocacy/acme_fitness_demo).
+    servers:
+      - url: 'http://localhost:5000'
+    paths:
+      '/cart/total/{userid}':
+        parameters:
+          - type: string
+            name: userid
+            in: path
+            required: true
+        get:
+          summary: Get Cart Total
+          tags: []
+          responses:
+            '200':
+              description: OK
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      carttotal:
+                        type: number
+                      userid:
+                        type: string
+                  examples:
+                    sample:
+                      value:
+                        carttotal: 804.5
+                        userid: dan
+          operationId: get_cart_total
+          description: Get total amount in users cart
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
@@ -510,5 +552,5 @@ spec:
   owner: acme-fitness-team
   system: fitness-store
   consumesApis:
-    - catalog-api
-    - cart-api
+    - api:catalog-api
+    - api:cart-api
