@@ -417,7 +417,7 @@ spec:
   owner: acme-fitness-team
   system: fitness-store
   providesApis:
-    - api:catalog-api
+    - api:default/catalog-api
   dependsOn:
     - resource:catalog-database
 ---
