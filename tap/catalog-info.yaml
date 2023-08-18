@@ -26,7 +26,7 @@ spec:
   owner: acme-fitness-team
   system: fitness-store
   providesApis:
-    - api:cart-api
+    - cart-api
   dependsOn:
     - resource:cart-cache
 ---
@@ -417,7 +417,7 @@ spec:
   owner: acme-fitness-team
   system: fitness-store
   providesApis:
-    - api:default/catalog-api
+    - catalog-api
   dependsOn:
     - resource:catalog-database
 ---
