@@ -52,6 +52,8 @@ spec:
   lifecycle: production
   owner: acme-fitness-team
   system: fitness-store
+  apiProvidedBy:
+  - acme-cart
   definition: |
     openapi: 3.0.0
     info:
@@ -443,6 +445,8 @@ spec:
   lifecycle: production
   owner: acme-fitness-team
   system: fitness-store
+  apiProvidedBy:
+  - acme-catalog
   definition: |
     openapi: 3.0.0
     info:
